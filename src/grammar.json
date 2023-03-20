@@ -1,0 +1,218 @@
+{
+  "name": "hyperlink",
+  "rules": {
+    "prose": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "url"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_url_fragment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_non_url_text"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_space"
+          }
+        ]
+      }
+    },
+    "url": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_protocol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_double_slash"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_rest"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_url_segment"
+          }
+        }
+      ]
+    },
+    "_url_segment": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_dot_then_rest"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_slash_then_rest"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_slash"
+        }
+      ]
+    },
+    "_url_fragment": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_protocol"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_protocol"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_double_slash"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_protocol"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_double_slash"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_rest"
+            }
+          ]
+        }
+      ]
+    },
+    "_dot_then_single_rest": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\.[^\\.)\\]\\s\\n\\t\\/]{1}"
+      }
+    },
+    "_dot_then_rest": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_dot_then_single_rest"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_rest"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_slash_then_rest": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_slash"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_rest"
+        }
+      ]
+    },
+    "_protocol": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "http:"
+        },
+        {
+          "type": "STRING",
+          "value": "https:"
+        }
+      ]
+    },
+    "_double_slash": {
+      "type": "STRING",
+      "value": "//"
+    },
+    "_rest": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_single_rest"
+      }
+    },
+    "_single_rest": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[^\\.)\\]\\s\\n\\t\\/\"']{1}"
+      }
+    },
+    "_dot": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "."
+      }
+    },
+    "_slash": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "/"
+      }
+    },
+    "_non_url_text": {
+      "type": "PATTERN",
+      "value": "."
+    },
+    "_space": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[\\s\\n]+"
+      }
+    }
+  },
+  "extras": [],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+

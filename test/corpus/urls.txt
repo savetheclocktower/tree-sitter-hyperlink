@@ -1,0 +1,35 @@
+=============
+URLs in prose
+=============
+
+Hello.
+
+http://example.com/foo?bar=baz. is it
+
+You might find my web site at https://andrewdupont.net.
+
+One example would be [this one](http://example.com/foo?bar=baz)
+
+Or this one [http://example.com]
+
+But not this fragment http://
+Nor this one http://x
+
+@import url(https://www.example.com/style.css);
+
+div {
+  background-image: url("https://www.example.com/style.gif");
+}
+
+also https://andrewdupont.net.
+
+---
+
+(prose
+  (url)
+  (url)
+  (url)
+  (url)
+  (url)
+  (url)
+  (url))

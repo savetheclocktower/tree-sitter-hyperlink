@@ -1,0 +1,19 @@
+Hello.
+
+http://example.com/foo?bar=baz. is it
+
+You might find my web site at https://andrewdupont.net.
+
+One example would be [this one](http://example.com/foo?bar=baz)
+
+Or this one [http://example.com]
+
+Or this fragment http://
+
+@import url(https://www.example.com/style.css);
+
+div {
+  background-image: url("https://www.example.com/style.gif");
+}
+
+also https://andrewdupont.net.
