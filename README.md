@@ -1,4 +1,4 @@
-# tree-sitter-comment
+# tree-sitter-hyperlink
 
 [Tree-sitter](https://github.com/tree-sitter/tree-sitter) grammar for detecting URLs in prose.
 
