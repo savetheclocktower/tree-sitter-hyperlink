@@ -11,8 +11,10 @@ Support is currently limited to URLs that
 
 * begin with `http` or `https`,
 * have sections of ordinary text with dots/slashes in between, and
-* do not end with any of `."'])`, all of which are far more likely to be meant
+* do not end with any of `,."']`, all of which are far more likely to be meant
   as a prose delimiter rather than part of the URL.
+
+URLs that end in `)` will have that `)` included in the URL _if_ it was preceded by an earlier `(` in the URL; otherwise it’ll be treated as a delimiter like the characters listed above.
 
 Validity of the URL, or of any TLDs, is _far_ beyond the ambitions of this parser.
 
@@ -41,13 +43,16 @@ div {
 }
 
 also https://example.net.
+
+Good news, Elvis: https://en.wikipedia.org/wiki/Alison_(song) (because the closing parenthesis is mistakenly assumed not to be part of the URL)
+
+<a href="http://example.com">http://example.com</a> (it'll recognize both instances)
+
+[A link to the Elvis Costello song in question](https://en.wikipedia.org/wiki/Alison_(song)) will correctly interpret the first ) as being part of the URL, but _not_ the second one.
+
 ```
 
-URLs that will not currently be identified correctly:
-
-```
-Sorry, Elvis: https://en.wikipedia.org/wiki/Alison_(song) (because the closing parenthesis is mistakenly assumed not to be part of the URL)
-```
+There are surely some URLs out there in the wild that run afoul of these rules, so open an issue if you like.
 
 ## Tests
 

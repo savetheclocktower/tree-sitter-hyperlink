@@ -4,7 +4,7 @@ URLs in prose
 
 Hello.
 
-http://example.com/foo?bar=baz. is it
+http://foo.example.com/foo?bar=baz. is it
 
 You might find my web site at https://andrewdupont.net.
 
@@ -13,7 +13,7 @@ One example would be [this one](http://example.com/foo?bar=baz)
 Or this one [http://example.com]
 
 But not this fragment http://
-Nor this one http://x
+But this one is OK http://x
 
 @import url(https://www.example.com/style.css);
 
@@ -22,6 +22,8 @@ div {
 }
 
 also https://andrewdupont.net.
+
+[link](https://en.wikipedia.org/wiki/Alison_(song))
 
 ---
 
@@ -32,4 +34,69 @@ also https://andrewdupont.net.
   (url)
   (url)
   (url)
-  (url))
+  (url)
+  (url)
+  (url)
+)
+
+===============================
+Terminal parenthesis (unpaired)
+===============================
+
+@import url(https://www.example.com/style.css);
+
+---
+(prose (url))
+
+===============================
+Terminal parenthesis (paired)
+===============================
+
+Sorry, Elvis: https://en.wikipedia.org/wiki/Alison_(song) (because the closing parenthesis is mistakenly assumed not to be part of the URL. Eventually, I hope, Tree-sitter will allow me to make assertions about specific row/column ranges; until then, this test merely confirms that we recognize a URL here and do not have an error)
+
+---
+(prose (url))
+
+===============================
+URL in raw HTML
+===============================
+
+<a href="https://a.com/?foo=&bar=troz">https://a.com</a> (should recognize two URLs, not just one)
+
+---
+(prose (url) (url))
+
+
+===============================
+URL at EOF
+===============================
+
+URL is http://example.com.
+---
+(prose (url))
+
+
+===============================
+Not a URL
+===============================
+
+URL is http://?what
+---
+(prose)
+
+
+===============================
+URL with a port
+===============================
+
+URL is http://localhost:8080/123?x=459.
+---
+(prose (url))
+
+===============================
+Username with domain name
+===============================
+
+URL is http://user@localhost:8080/123?x=459.
+---
+(prose (url))
