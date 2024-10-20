@@ -55,10 +55,10 @@ module.exports = grammar({
       $._hostname_without_tld,
       // Be permissive here. For feature parity with the TM grammar, stuff like
       // https://x will still be recognized as a URL.
-      optional(seq(
+      optional(repeat(seq(
         '.',
         $._url_segment
-      ))
+      )))
     )),
 
     _url_segment: $ => choice(
