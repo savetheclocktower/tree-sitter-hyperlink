@@ -9,7 +9,7 @@
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
     "test": "node --test bindings/node/*_test.js",
-    "prebuildify": "prebuildify --napi --strip"
+    "test:all": "tree-sitter test && node --test bindings/node/*_test.js && jasmine spec/*-spec.js"
   },
   "repository": {
     "type": "git",

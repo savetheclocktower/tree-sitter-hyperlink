@@ -4,6 +4,7 @@ module.exports = grammar({
   extras: _ => [],
 
   externals: $ => [
+    $._dot_without_following_space,
     // $._eof,
   ],
 
@@ -56,7 +57,7 @@ module.exports = grammar({
       // Be permissive here. For feature parity with the TM grammar, stuff like
       // https://x will still be recognized as a URL.
       optional(repeat(seq(
-        '.',
+        $._dot_without_following_space,
         $._url_segment
       )))
     )),

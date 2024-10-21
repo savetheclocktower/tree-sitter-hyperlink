@@ -136,8 +136,8 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "STRING",
-                      "value": "."
+                      "type": "SYMBOL",
+                      "name": "_dot_without_following_space"
                     },
                     {
                       "type": "SYMBOL",
@@ -296,7 +296,12 @@
     ]
   ],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_dot_without_following_space"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }
